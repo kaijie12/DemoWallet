@@ -25,6 +25,11 @@ public class Wallet {
     public Wallet() {
     }
 
+    public Wallet(long id, String account_balance) {
+        this.id = id;
+        this.account_balance = account_balance;
+    }
+
     public long getId() {
         return id;
     }

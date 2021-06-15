@@ -28,14 +28,6 @@ public class SimpleWalletService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public boolean hasWallet() {
-        return walletRepository.count() > 0;
-    }
-
-    public void createWallet(Wallet wallet) {
-        walletRepository.save(wallet);
-    }
-
     public TransactionResponse createTransaction(Transaction transaction) {
 
         //current assumption that there is only 1 user
@@ -66,9 +58,9 @@ public class SimpleWalletService {
             // then skip, check if amount is 0, once looped finish, if amount is not 0, then minus from largerValue set
             ofNullable(walletMap.get(amountToPay)).filter(a-> a>0).ifPresentOrElse(coin->{
                 //remove from list
-                System.out.println("exact coin found: "+ coin );
-                walletMap.put(coin, walletMap.get(coin) - 1);
-                coinsPaid.add(coin);
+                System.out.println("exact coin found: "+ amountToPay );
+                walletMap.put(amountToPay, walletMap.get(amountToPay) - 1);
+                coinsPaid.add(amountToPay);
             },()->{
                 List<Integer> smallerValuesList=walletListSorted.stream().filter(v->amountToPay>v).collect(Collectors.toList());
                 List<Integer> largerValuesList=walletListSorted.stream().filter(v->amountToPay<v).collect(Collectors.toList());

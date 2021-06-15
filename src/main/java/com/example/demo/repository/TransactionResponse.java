@@ -12,6 +12,15 @@ public class TransactionResponse {
     public TransactionResponse() {
     }
 
+    @Override
+    public String toString() {
+        return "TransactionResponse{" +
+                "coinsPaid=" + coinsPaid +
+                ", coinsLeft=" + coinsLeft +
+                ", change=" + change +
+                '}';
+    }
+
     public TransactionResponse(List<Integer> coinsPaid, List<Integer> coinsLeft, Integer change) {
         this.coinsPaid = coinsPaid;
         this.coinsLeft = coinsLeft;
